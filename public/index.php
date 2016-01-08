@@ -59,7 +59,7 @@ try {
 						if (!is_dir($dir)) {
 							mkdir($dir);
 						}
-						return $dir . '/hoothoot-tv%'. str_replace('/', '%', str_replace($view->getViewsDir(), '', $templatePath)) . '.php';
+						return $dir . '/hunter-light%'. str_replace('/', '%', str_replace($view->getViewsDir(), '', $templatePath)) . '.php';
 					},
 					'compileAlways' => $env->realm != 'prod',
 				));

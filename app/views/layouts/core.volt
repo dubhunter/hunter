@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Hoothoot.tv | {% block title %}Twilio Shout Out Service{% endblock %}</title>
+		<title>Hunter Light | {% block title %}Night Light API{% endblock %}</title>
 
 		<meta http-equiv="content-type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="chrome=1">
