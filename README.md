@@ -1,2 +1,2 @@
 # hunter
-API for my baby boy
+API for the hunter light
