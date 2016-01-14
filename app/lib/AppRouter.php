@@ -6,6 +6,7 @@ class AppRouter extends Phalcon\Mvc\Router\Group {
 
 	protected static $routes = array(
 		'/' => 'home',
+		'/call' => 'call',
 		'/message' => 'message',
 		'/v1/light' => 'v1Light',
 	);
