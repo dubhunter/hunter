@@ -95,7 +95,9 @@ try {
 					'weight' => 1,
 				),
 			),
-			'client' => array(),
+			'client' => array(
+				Memcached::OPT_PREFIX_KEY => $memcacheConfig->prefix,
+			),
 		));
 	}, true);
 
