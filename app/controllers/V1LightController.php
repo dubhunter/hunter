@@ -10,6 +10,7 @@ class V1LightController extends V1ApiController {
 				'color' => $this->getColor(),
 				'days' => $this->getDays(),
 				'time' => time(),
+				'offset' => date('Z'),
 			));
 		} catch (Exception $e) {
 			return JsonResponse::error(array(
