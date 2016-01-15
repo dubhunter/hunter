@@ -8,7 +8,7 @@ class V1LightController extends V1ApiController {
 		try {
 			return JsonResponse::ok(array(
 				'color' => $this->getColor(),
-				'days' => $this->getDays() . 'days',
+				'days' => $this->getDays(),
 				'time' => time(),
 				'offset' => date('Z'),
 			));
