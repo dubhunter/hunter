@@ -9,6 +9,7 @@ class AppRouter extends Phalcon\Mvc\Router\Group {
 		'/call' => 'call',
 		'/message' => 'message',
 		'/v1/light' => 'v1Light',
+		'/v1/temp' => 'v1Temp',
 	);
 
 	public function initialize() {

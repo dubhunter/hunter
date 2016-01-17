@@ -132,6 +132,20 @@ class BaseController extends Phalcon\Mvc\Controller {
 	}
 
 	/**
+	 * @param string $temp
+	 */
+	protected function setTemp($temp) {
+		$this->cacheSet('temp', $temp);
+	}
+
+	/**
+	 * @return mixed
+	 */
+	protected function getTemp() {
+		return $this->cacheGet('temp');
+	}
+
+	/**
 	 * @return int
 	 */
 	protected function getDays() {
