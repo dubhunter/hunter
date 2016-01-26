@@ -27,6 +27,7 @@ class SiteController extends BaseController {
 			->addJs('jquery-1.10.2.min.js')
 			->addJs('jquery.role.js')
 			->addJs('bootstrap.js')
+			->addJs('app.js')
 			->join(true)
 			->addFilter(new Jsmin());
 	}

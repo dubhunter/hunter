@@ -11,6 +11,7 @@ class BaseController extends Phalcon\Mvc\Controller {
 	const DOB = 1460876400;
 
 	protected static $colors = array(
+		'off',
 		'rainbow',
 		'red',
 		'pink',
@@ -21,7 +22,6 @@ class BaseController extends Phalcon\Mvc\Controller {
 		'yellow',
 		'orange',
 		'gray',
-		'off',
 	);
 
 	public function options() {
