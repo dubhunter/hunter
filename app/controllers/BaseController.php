@@ -8,7 +8,7 @@ use Phalcon\Cache\Backend\Memcache as Memcache;
 
 class BaseController extends Phalcon\Mvc\Controller {
 
-	const DOB = 1460876400;
+	const DOB = 1460170560;
 
 	protected static $colors = array(
 		'off',
