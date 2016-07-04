@@ -12,6 +12,7 @@ class BaseController extends Phalcon\Mvc\Controller {
 
 	protected static $colors = array(
 		'off',
+		'clock',
 		'rainbow',
 		'red',
 		'pink',
