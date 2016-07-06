@@ -10,6 +10,7 @@
 		}
 	],
 	"require": {
-		"dubhunter/talon": "dev-master"
+		"dubhunter/talon": "dev-master",
+		"league/uri": "4.1.1"
 	}
 }

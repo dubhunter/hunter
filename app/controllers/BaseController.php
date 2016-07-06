@@ -1,10 +1,11 @@
 <?php
 
+use League\Uri\Schemes\Http as HttpUri;
+use Phalcon\Cache\Backend\Memcache as Memcache;
 use Talon\Http\Response;
 use Talon\Http\Response\Json as JsonResponse;
 use Talon\Http\RestRequest;
 use Talon\Mvc\View\Template;
-use Phalcon\Cache\Backend\Memcache as Memcache;
 
 class BaseController extends Phalcon\Mvc\Controller {
 
@@ -69,7 +70,7 @@ class BaseController extends Phalcon\Mvc\Controller {
 	 * @return string
 	 */
 	protected function buildUrl($url, $params) {
-		return http_build_url($url, array('query' => http_build_query($params)));
+		return HttpUri::createFromString($url)->withQuery(http_build_query($params))->__toString();
 	}
 
 	/**
