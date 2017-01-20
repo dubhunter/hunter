@@ -13,10 +13,7 @@
 		<meta name="description" content="Twilio shout out web service.">
 
 		<link rel="shortcut icon" href="/favicons/monkey-64.png">
-		<link rel="apple-touch-icon" href="/favicons/monkey-57.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="/favicons/monkey-72.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="/favicons/monkey-114.png">
-		<link rel="apple-touch-icon" sizes="144x144" href="/favicons/monkey-144.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/favicons/monkey-180.png">
 
 		{{ assets.outputCss() }}
 	</head>
