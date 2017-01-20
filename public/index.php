@@ -3,15 +3,13 @@
 use Talon\Http\RestRequest;
 use Talon\Mvc\RestDispatcher;
 use Phalcon\Loader;
-use Phalcon\Security;
-use Phalcon\DI\FactoryDefault as DI;
+use Phalcon\Di\FactoryDefault as DI;
 use Phalcon\Assets\Manager as AssetManager;
 use Phalcon\Config\Adapter\Ini;
 use Phalcon\Flash\Session as FlashSession;
 use Phalcon\Cache\Frontend\Data as CacheFrontend;
 use Phalcon\Cache\Backend\Libmemcached as Memcache;
 use Phalcon\Mvc\Router;
-use Phalcon\Mvc\Url;
 use Phalcon\Mvc\ViewInterface as ViewInterface;
 use Phalcon\Mvc\View\Simple as View;
 use Phalcon\Mvc\View\Engine\Volt;
@@ -49,6 +47,7 @@ try {
 
 		$view->registerEngines(array(
 			'.volt' => function ($view, $di) {
+				/** @var DI $di */
 				$env = $di->get('config')->get('environment');
 
 				/** @var ViewInterface|View $view */
@@ -75,8 +74,7 @@ try {
 	 * Setting up the asset manager
 	 */
 	$di->set('assets', function () {
-		$assetManager = new AssetManager();
-		return $assetManager;
+		return new AssetManager();
 	}, true);
 
 	/**
@@ -157,9 +155,7 @@ try {
 
 		$router->removeExtraSlashes(true);
 
-		$router->notFound(array(
-			'controller' => 'error404',
-		));
+		$router->notFound('error404');
 
 		$router->mount(new AppRouter());
 
