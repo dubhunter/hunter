@@ -96,11 +96,12 @@ class BaseController extends Phalcon\Mvc\Controller {
 	/**
 	 * @param string $key
 	 * @param mixed $variable
+	 * @param int $lifetime
 	 */
-	protected function cacheSet($key, $variable) {
+	protected function cacheSet($key, $variable, $lifetime = null) {
 		/** @var Memcache $cache */
 		$cache = $this->getDI()->get('modelsCache');
-		$cache->save($key, $variable);
+		$cache->save($key, $variable, $lifetime);
 	}
 
 	/**
@@ -137,7 +138,7 @@ class BaseController extends Phalcon\Mvc\Controller {
 	 * @param string $temp
 	 */
 	protected function setTemp($temp) {
-		$this->cacheSet('temp', $temp);
+		$this->cacheSet('temp', $temp, 3600);
 	}
 
 	/**
