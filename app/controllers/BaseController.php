@@ -10,6 +10,7 @@ use Talon\Mvc\View\Template;
 class BaseController extends Phalcon\Mvc\Controller {
 
 	const DOB = 1460170560;
+	const TEMP_LIFETIME = 3600;
 
 	protected static $colors = array(
 		'off',
@@ -107,12 +108,13 @@ class BaseController extends Phalcon\Mvc\Controller {
 	/**
 	 * @param string $key
 	 * @param mixed $default
+	 * @param int $lifetime
 	 * @return mixed
 	 */
-	protected function cacheGet($key, $default = null) {
+	protected function cacheGet($key, $default = null, $lifetime = null) {
 		/** @var Memcache $cache */
 		$cache = $this->getDI()->get('modelsCache');
-		return $cache->exists($key) ? $cache->get($key) : $default;
+		return $cache->exists($key) ? $cache->get($key, $lifetime) : $default;
 	}
 
 	/**
@@ -138,14 +140,14 @@ class BaseController extends Phalcon\Mvc\Controller {
 	 * @param string $temp
 	 */
 	protected function setTemp($temp) {
-		$this->cacheSet('temp', $temp, 3600);
+		$this->cacheSet('temp', $temp, self::TEMP_LIFETIME);
 	}
 
 	/**
 	 * @return mixed
 	 */
 	protected function getTemp() {
-		return $this->cacheGet('temp');
+		return $this->cacheGet('temp', null, self::TEMP_LIFETIME);
 	}
 
 	/**
