@@ -27,10 +27,14 @@ class LightTask extends Phalcon\CLI\Task {
 				],
 			]
 		);
+
 		$body = $response->getBody();
+
 		if ($response->getStatusCode() == 200) {
 			$data = $data = json_decode($body, true);
 			print_r($data);
+			echo 'INSIDE TEMP: ' . $data['iat'] . PHP_EOL;
+			echo 'OUTSIDE TEMP: ' . $data['oat'] . PHP_EOL;
 			$this->cache()->setInsideTemp($data['iat']);
 			$this->cache()->setOutsideTemp($data['oat']);
 		} else {
