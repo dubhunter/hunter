@@ -1,6 +1,6 @@
 <?php
 
-use Phalcon\Cache\Backend\Memcache as Memcache;
+use Phalcon\Cache\Backend\Libmemcached as Memcache;
 
 class Cache {
 

@@ -4,9 +4,8 @@ use Phalcon\Loader;
 use Phalcon\DI\FactoryDefault\CLI as DI;
 use Phalcon\CLI\Console as ConsoleApp;
 use Phalcon\Config\Adapter\Ini;
-use Phalcon\Db\Adapter\Pdo\Mysql;
 use Phalcon\Cache\Frontend\Data as CacheFrontend;
-use Phalcon\Cache\Backend\Memcache as Memcache;
+use Phalcon\Cache\Backend\Libmemcached as Memcache;
 
 define('VERSION', '1.0.0');
 
