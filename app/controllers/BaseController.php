@@ -10,22 +10,6 @@ use Talon\Mvc\View\Template;
 class BaseController extends Phalcon\Mvc\Controller {
 
 	const DOB = 1460170560;
-	const TEMP_LIFETIME = 3600;
-
-	protected static $colors = [
-		'off',
-		'clock',
-		'rainbow',
-		'red',
-		'pink',
-		'purple',
-		'blue',
-		'aqua',
-		'green',
-		'yellow',
-		'orange',
-		'gray',
-	];
 
 	public function options() {
 		return $this->request->isAjax() ? JsonResponse::methodNotAllowed() : Response::methodNotAllowed();
@@ -95,26 +79,10 @@ class BaseController extends Phalcon\Mvc\Controller {
 	}
 
 	/**
-	 * @param string $key
-	 * @param mixed $variable
-	 * @param int $lifetime
+	 * @return Cache
 	 */
-	protected function cacheSet($key, $variable, $lifetime = null) {
-		/** @var Memcache $cache */
-		$cache = $this->getDI()->get('modelsCache');
-		$cache->save($key, $variable, $lifetime);
-	}
-
-	/**
-	 * @param string $key
-	 * @param mixed $default
-	 * @param int $lifetime
-	 * @return mixed
-	 */
-	protected function cacheGet($key, $default = null, $lifetime = null) {
-		/** @var Memcache $cache */
-		$cache = $this->getDI()->get('modelsCache');
-		return $cache->exists($key) ? $cache->get($key, $lifetime) : $default;
+	protected function cache() {
+		return $this->getDI()->get('cache');
 	}
 
 	/**
@@ -122,46 +90,42 @@ class BaseController extends Phalcon\Mvc\Controller {
 	 * @throws Exception
 	 */
 	protected function setColor($color) {
-		if (!in_array($color, self::$colors)) {
-			throw new Exception('Invalid Color');
-		}
-
-		$this->cacheSet('color', $color);
+		$this->cache()->setColor($color);
 	}
 
 	/**
 	 * @return mixed
 	 */
 	protected function getColor() {
-		return $this->cacheGet('color');
+		return $this->cache()->getColor();
 	}
 
 	/**
 	 * @param string $temp
 	 */
 	protected function setInsideTemp($temp) {
-		$this->cacheSet('insideTemp', $temp, self::TEMP_LIFETIME);
+		$this->cache()->setInsideTemp($temp);
 	}
 
 	/**
 	 * @return mixed
 	 */
 	protected function getInsideTemp() {
-		return $this->cacheGet('insideTemp', null, self::TEMP_LIFETIME);
+		return $this->cache()->getInsideTemp();
 	}
 
 	/**
 	 * @param string $temp
 	 */
 	protected function setOutsideTemp($temp) {
-		$this->cacheSet('outsideTemp', $temp, self::TEMP_LIFETIME);
+		$this->cache()->setOutsideTemp($temp);
 	}
 
 	/**
 	 * @return mixed
 	 */
 	protected function getOutsideTemp() {
-		return $this->cacheGet('outsideTemp', null, self::TEMP_LIFETIME);
+		return $this->cache()->getOutsideTemp();
 	}
 
 	/**

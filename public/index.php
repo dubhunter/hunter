@@ -80,12 +80,12 @@ try {
 	/**
 	 * Setting up the model cache
 	 */
-	$di->set('modelsCache', function() use ($di) {
+	$di->set('cache', function() use ($di) {
 		$memcacheConfig = $di->get('config')->get('memcache');
-		$frontCache = new CacheFrontend([
+		$frontend = new CacheFrontend([
 			'lifetime' => $memcacheConfig->lifetimeModels,
 		]);
-		return new Memcache($frontCache, [
+		$backend = new Memcache($frontend, [
 			'servers' => [
 				[
 					'host' => $memcacheConfig->host,
@@ -97,6 +97,7 @@ try {
 				Memcached::OPT_PREFIX_KEY => $memcacheConfig->prefix,
 			],
 		]);
+		return new Cache($backend);
 	}, true);
 
 	/**
