@@ -6,17 +6,23 @@ class V1LightController extends V1ApiController {
 
 	public function get() {
 		try {
-			return JsonResponse::ok(array(
+			$data = [
 				'color' => $this->getColor(),
 				'days' => $this->getDays(),
-				'temp' => $this->getTemp() ? intval(round($this->getTemp())) : null,
 				'time' => time(),
 				'offset' => date('Z'),
-			));
+			];
+			if ($this->getInsideTemp()) {
+				$data['itemp'] = $this->getInsideTemp();
+			}
+			if ($this->getOutsideTemp()) {
+				$data['otemp'] = $this->getOutsideTemp();
+			}
+			return JsonResponse::ok($data);
 		} catch (Exception $e) {
-			return JsonResponse::error(array(
+			return JsonResponse::error([
 				'error' => $e->getMessage(),
-			));
+			]);
 		}
 	}
 

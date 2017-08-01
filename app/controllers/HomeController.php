@@ -26,7 +26,7 @@ class HomeController extends SiteController {
 		} catch (Exception $e) {
 			$this->flash->error($e->getMessage());
 		}
-		return Response::temporaryRedirect(array('for' => 'home'));
+		return Response::temporaryRedirect(['for' => 'home']);
 	}
 
 }

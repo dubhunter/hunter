@@ -4,13 +4,13 @@ use Phalcon\Text;
 
 class AppRouter extends Phalcon\Mvc\Router\Group {
 
-	protected static $routes = array(
+	protected static $routes = [
 		'/' => 'home',
 		'/call' => 'call',
 		'/message' => 'message',
 		'/v1/light' => 'v1Light',
 		'/v1/temp' => 'v1Temp',
-	);
+	];
 
 	public function initialize() {
 		foreach (self::$routes as $route => $controller) {

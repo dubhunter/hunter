@@ -7,14 +7,14 @@ class V1TempController extends V1ApiController {
 	public function post() {
 		try {
 			$temp = strtolower(trim($this->request->getPost('data')));
-			$this->setTemp($temp);
-			return JsonResponse::ok(array(
-				'temp' => $this->getTemp(),
-			));
+			$this->setOutsideTemp($temp);
+			return JsonResponse::ok([
+				'temp' => $this->getOutsideTemp(),
+			]);
 		} catch (Exception $e) {
-			return JsonResponse::error(array(
+			return JsonResponse::error([
 				'error' => $e->getMessage(),
-			));
+			]);
 		}
 	}
 

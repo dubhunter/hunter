@@ -6,10 +6,10 @@ use Phalcon\Assets\Filters\Jsmin;
 class SiteController extends BaseController {
 
 	public function	initialize() {
-		$this->assets->setOptions(array(
+		$this->assets->setOptions([
 			'sourceBasePath' => APP_DIR . 'assets/',
 			'targetBasePath' => PUBLIC_DIR
-		));
+		]);
 
 		$this->assets->collection('css')
 			->setSourcePath('css/')

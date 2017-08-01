@@ -21,9 +21,9 @@ class Application extends Phalcon\Mvc\Application {
 			case Response::HTTP_FORBIDDEN:
 			case Response::HTTP_INTERNAL_SERVER_ERROR:
 				if ($this->request->isAjax() || $response instanceof JsonResponse) {
-					$response->setContent(array(
+					$response->setContent([
 						'error' => $response->getStatusMessage(),
-					));
+					]);
 				} else {
 					$template = new Template($this->view, 'error');
 					$template->set('code', $response->getStatusCode());

@@ -21,11 +21,11 @@ define('VENDOR_DIR', realpath('../vendor') . '/');
 
 try {
 	$loader = new Loader();
-	$loader->registerDirs(array(
+	$loader->registerDirs([
 		APP_DIR . 'controllers/',
 		APP_DIR . 'lib/',
 		APP_DIR . 'models/',
-	))->register();
+	])->register();
 
 	require VENDOR_DIR . 'autoload.php';
 
@@ -45,14 +45,14 @@ try {
 		$view = new View();
 		$view->setViewsDir(APP_DIR . 'views/');
 
-		$view->registerEngines(array(
+		$view->registerEngines([
 			'.volt' => function ($view, $di) {
 				/** @var DI $di */
 				$env = $di->get('config')->get('environment');
 
 				/** @var ViewInterface|View $view */
 				$volt = new Volt($view, $di);
-				$volt->setOptions(array(
+				$volt->setOptions([
 					'compiledPath' => function ($templatePath) use ($view) {
 						$dir = rtrim(sys_get_temp_dir(), '/') . '/volt-cache';
 						if (!is_dir($dir)) {
@@ -61,11 +61,11 @@ try {
 						return $dir . '/hunter-light%'. str_replace('/', '%', str_replace($view->getViewsDir(), '', $templatePath)) . '.php';
 					},
 					'compileAlways' => $env->realm != 'prod',
-				));
+				]);
 
 				return $volt;
 			},
-		));
+		]);
 
 		return $view;
 	}, true);
@@ -82,21 +82,21 @@ try {
 	 */
 	$di->set('modelsCache', function() use ($di) {
 		$memcacheConfig = $di->get('config')->get('memcache');
-		$frontCache = new CacheFrontend(array(
+		$frontCache = new CacheFrontend([
 			'lifetime' => $memcacheConfig->lifetimeModels,
-		));
-		return new Memcache($frontCache, array(
-			'servers' => array(
-				array(
+		]);
+		return new Memcache($frontCache, [
+			'servers' => [
+				[
 					'host' => $memcacheConfig->host,
 					'port' => $memcacheConfig->port,
 					'weight' => 1,
-				),
-			),
-			'client' => array(
+				],
+			],
+			'client' => [
 				Memcached::OPT_PREFIX_KEY => $memcacheConfig->prefix,
-			),
-		));
+			],
+		]);
 	}, true);
 
 	/**
@@ -104,18 +104,18 @@ try {
 	 */
 	$di->set('session', function () use ($di) {
 		$memcacheConfig = $di->get('config')->get('memcache');
-		$session = new Session(array(
-			'servers' => array(
-				array(
+		$session = new Session([
+			'servers' => [
+				[
 					'host' => $memcacheConfig->host,
 					'port' => $memcacheConfig->port,
 					'weight' => 1,
-				),
-			),
-			'client' => array(),
+				],
+			],
+			'client' => [],
 			'lifetime' => $memcacheConfig->lifetimeSession,
 			'prefix' => $memcacheConfig->prefix,
-		));
+		]);
 		$session->start();
 
 		return $session;
@@ -125,12 +125,12 @@ try {
 	 * Setting up the flash service
 	 */
 	$di->set('flash', function() {
-		return new FlashSession(array(
+		return new FlashSession([
 			'notice' => 'alert alert-info',
 			'success' => 'alert alert-success',
 			'warning' => 'alert alert-warning',
 			'error' => 'alert alert-danger',
-		));
+		]);
 	});
 
 	/**

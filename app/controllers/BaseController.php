@@ -12,7 +12,7 @@ class BaseController extends Phalcon\Mvc\Controller {
 	const DOB = 1460170560;
 	const TEMP_LIFETIME = 3600;
 
-	protected static $colors = array(
+	protected static $colors = [
 		'off',
 		'clock',
 		'rainbow',
@@ -25,7 +25,7 @@ class BaseController extends Phalcon\Mvc\Controller {
 		'yellow',
 		'orange',
 		'gray',
-	);
+	];
 
 	public function options() {
 		return $this->request->isAjax() ? JsonResponse::methodNotAllowed() : Response::methodNotAllowed();
@@ -78,9 +78,9 @@ class BaseController extends Phalcon\Mvc\Controller {
 	 * @return array
 	 */
 	protected function getAppGlobal() {
-		$app = array(
+		$app = [
 			'values' => $this->request->get(null, 'string'),
-		);
+		];
 		return $app;
 	}
 
@@ -139,15 +139,29 @@ class BaseController extends Phalcon\Mvc\Controller {
 	/**
 	 * @param string $temp
 	 */
-	protected function setTemp($temp) {
-		$this->cacheSet('temp', $temp, self::TEMP_LIFETIME);
+	protected function setInsideTemp($temp) {
+		$this->cacheSet('insideTemp', $temp, self::TEMP_LIFETIME);
 	}
 
 	/**
 	 * @return mixed
 	 */
-	protected function getTemp() {
-		return $this->cacheGet('temp', null, self::TEMP_LIFETIME);
+	protected function getInsideTemp() {
+		return $this->cacheGet('insideTemp', null, self::TEMP_LIFETIME);
+	}
+
+	/**
+	 * @param string $temp
+	 */
+	protected function setOutsideTemp($temp) {
+		$this->cacheSet('outsideTemp', $temp, self::TEMP_LIFETIME);
+	}
+
+	/**
+	 * @return mixed
+	 */
+	protected function getOutsideTemp() {
+		return $this->cacheGet('outsideTemp', null, self::TEMP_LIFETIME);
 	}
 
 	/**
