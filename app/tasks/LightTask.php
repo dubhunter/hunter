@@ -12,7 +12,7 @@ class LightTask extends Phalcon\CLI\Task {
 	}
 
 	public function fetchTempAction() {
-		echo 'FETCHING TEMPERATURE: ' . PHP_EOL;
+		echo 'FETCHING TEMPERATURE... ' . PHP_EOL;
 
 		$bayweb = $this->getDI()->get('config')->get('bayweb');
 
@@ -30,6 +30,7 @@ class LightTask extends Phalcon\CLI\Task {
 		$body = $response->getBody();
 		if ($response->getStatusCode() == 200) {
 			$data = $data = json_decode($body, true);
+			print_r($data);
 			$this->cache()->setInsideTemp($data['iat']);
 			$this->cache()->setOutsideTemp($data['oat']);
 		} else {
