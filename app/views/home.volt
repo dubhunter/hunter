@@ -9,7 +9,7 @@
 			</div>
 			<div class="col-sm-4">
 				<h2>Temp</h2>
-				<p>{{ temp }}&#x2109;</p>
+				<p>{{ insideTemp }}&#x2109;  / {{ outsideTemp }}&#x2109;</p>
 			</div>
 			<div class="col-sm-4">
 				<form action="{{ url(['for': 'home']) }}" method="post">

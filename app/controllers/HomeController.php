@@ -9,7 +9,8 @@ class HomeController extends SiteController {
 
 		$template->set('color', $this->getColor());
 		$template->set('days', $this->getDays());
-		$template->set('temp', intval(round($this->getTemp())));
+		$template->set('insideTemp', intval(round($this->getInsideTemp())));
+		$template->set('outsideTemp', intval(round($this->getOutsideTemp())));
 
 		$template->set('colors', self::$colors);
 
