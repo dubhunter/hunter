@@ -6,7 +6,7 @@ class Cache {
 
 	const TEMP_LIFETIME = 3600;
 
-	protected static $colors = [
+	public static $colors = [
 		'off',
 		'clock',
 		'rainbow',

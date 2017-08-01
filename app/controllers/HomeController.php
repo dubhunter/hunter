@@ -12,7 +12,7 @@ class HomeController extends SiteController {
 		$template->set('insideTemp', intval(round($this->getInsideTemp())));
 		$template->set('outsideTemp', intval(round($this->getOutsideTemp())));
 
-		$template->set('colors', self::$colors);
+		$template->set('colors', Cache::$colors);
 
 		return Response::ok($template);
 	}
