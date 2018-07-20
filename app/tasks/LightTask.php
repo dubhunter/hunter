@@ -54,7 +54,7 @@ class LightTask extends Phalcon\CLI\Task {
 
 		if ($response->getStatusCode() == 200) {
 			$data = json_decode($body, true);
-			$temp = $data['currently']['temperature'];
+			$temp = round($data['currently']['temperature']);
 			echo 'OUTSIDE TEMP: ' . $temp . PHP_EOL;
 			$this->cache()->setOutsideTemp($temp);
 		} else {
