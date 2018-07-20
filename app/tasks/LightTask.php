@@ -18,7 +18,6 @@ class LightTask extends Phalcon\CLI\Task {
 		$response = $client->get(
 			$url,
 			[
-				'debug' => true,
 				'allow_redirects' => false,
 				'headers' => [
 					'Content-Type' => 'application/json',
