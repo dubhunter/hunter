@@ -11,21 +11,40 @@ class LightTask extends Phalcon\CLI\Task {
 		return $this->getDI()->get('cache');
 	}
 
-	public function fetchInsideTempAction() {
-		echo 'FETCHING INSIDE TEMPERATURE... ' . PHP_EOL;
-
+	protected function nestRequest($url = 'https://developer-api.nest.com/') {
 		$nest = $this->getDI()->get('config')->get('nest');
 
 		$client = new Client();
 		$response = $client->get(
-			'https://developer-api.nest.com/',
+			$url,
 			[
+				'debug' => true,
+				'allow_redirects' => false,
 				'headers' => [
 					'Content-Type' => 'application/json',
 					'Authorization' => 'Bearer ' . $nest->accessToken,
 				],
 			]
 		);
+
+		if ($response->getStatusCode() == '307') {
+			return $this->nestRequest($response->getHeader('Location')[0]);
+		}
+
+		return $response;
+	}
+
+	protected function darkskyRequest() {
+		$darksky = $this->getDI()->get('config')->get('darksky');
+
+		$client = new Client();
+		return $client->get('https://api.darksky.net/forecast/' . $darksky->key . '/' . $darksky->location);
+	}
+
+	public function fetchInsideTempAction() {
+		echo 'FETCHING INSIDE TEMPERATURE... ' . PHP_EOL;
+
+		$response = $this->nestRequest();
 
 		$body = $response->getBody();
 
@@ -45,10 +64,7 @@ class LightTask extends Phalcon\CLI\Task {
 	public function fetchOutsideTempAction() {
 		echo 'FETCHING OUTSIDE TEMPERATURE... ' . PHP_EOL;
 
-		$darksky = $this->getDI()->get('config')->get('darksky');
-
-		$client = new Client();
-		$response = $client->get('https://api.darksky.net/forecast/' . $darksky->key . '/' . $darksky->location);
+		$response = $this->darkskyRequest();
 
 		$body = $response->getBody();
 
