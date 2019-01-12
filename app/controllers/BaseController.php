@@ -139,11 +139,11 @@ class BaseController extends Phalcon\Mvc\Controller {
 	 */
 	protected function getAge() {
 		try {
-			$birth = new DateTime(self::DOB);
-			$now = new DateTime(time());
+			$birth = (new DateTime())->setTimestamp(self::DOB);
+			$now = (new DateTime())->setTimestamp(time());
 			$diff = $now->diff($birth);
 			return [
-				'years' => $diff->format('%Y'),
+				'years' => $diff->format('%y'),
 				'months' => $diff->format('%m'),
 				'days' => $diff->format('%d'),
 			];
