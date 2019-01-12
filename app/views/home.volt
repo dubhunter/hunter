@@ -4,8 +4,8 @@
 	<div class="jumbotron">
 		<div class="row">
 			<div class="col-sm-4">
-				<h2>Days</h2>
-				<p>{{ days }}</p>
+				<h2>Age</h2>
+				<p>{{ age.years }} years {{ age.months }} months {{ age.days }} days</p>
 			</div>
 			<div class="col-sm-4">
 				<h2>Temp</h2>

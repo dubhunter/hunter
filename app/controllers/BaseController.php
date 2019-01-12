@@ -1,7 +1,6 @@
 <?php
 
 use League\Uri\Schemes\Http as HttpUri;
-use Phalcon\Cache\Backend\Memcache as Memcache;
 use Talon\Http\Response;
 use Talon\Http\Response\Json as JsonResponse;
 use Talon\Http\RestRequest;
@@ -133,6 +132,25 @@ class BaseController extends Phalcon\Mvc\Controller {
 	 */
 	protected function getDays() {
 		return intval(abs(time() - self::DOB) / 86400);
+	}
+
+	/**
+	 * @return array|null
+	 */
+	protected function getAge() {
+		try {
+			$birth = new DateTime(self::DOB);
+			$now = new DateTime(time());
+			$diff = $now->diff($birth);
+			return [
+				'years' => $diff->format('%Y'),
+				'months' => $diff->format('%m'),
+				'days' => $diff->format('%d'),
+			];
+		} catch (Exception $e) {
+			return null;
+		}
+
 	}
 
 	/**
