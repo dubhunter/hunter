@@ -9,6 +9,7 @@ class V1LightController extends V1ApiController {
 			$data = [
 				'color' => $this->getColor(),
 				'days' => $this->getDays(),
+				'age' => $this->getAge(),
 				'time' => time(),
 				'offset' => date('Z'),
 			];
