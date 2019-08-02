@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "dubhunter/talon",
-            "version": "2.0.2",
+            "version": "2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dubhunter/talon.git",
-                "reference": "09e3110b1106f77cf5399697d06b52052bf82a4d"
+                "reference": "4aa5ad2bedc0df4910933f3c6b7c347fdb364630"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dubhunter/talon/zipball/09e3110b1106f77cf5399697d06b52052bf82a4d",
-                "reference": "09e3110b1106f77cf5399697d06b52052bf82a4d",
+                "url": "https://api.github.com/repos/dubhunter/talon/zipball/4aa5ad2bedc0df4910933f3c6b7c347fdb364630",
+                "reference": "4aa5ad2bedc0df4910933f3c6b7c347fdb364630",
                 "shasum": ""
             },
             "require": {
@@ -45,7 +45,7 @@
                 }
             ],
             "description": "Phalcon PHP framework tools for RESTful development.",
-            "time": "2019-08-02T08:22:26+00:00"
+            "time": "2019-08-02T11:13:23+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
