@@ -1,7 +1,8 @@
 <?php
 
-use Talon\Http\Response;
-use Talon\Http\Response\Twiml as TwimlResponse;
+use Dubhunter\HunterLight\Controllers\BaseController;
+use Dubhunter\Talon\Http\Response;
+use Dubhunter\Talon\Http\Response\Twiml as TwimlResponse;
 
 class MessageController extends BaseController {
 

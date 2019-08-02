@@ -1,5 +1,8 @@
 <?php
 
+namespace Dubhunter\HunterLight\Lib;
+
+use Exception;
 use Phalcon\Cache\Backend\Libmemcached as Memcache;
 
 class Cache {

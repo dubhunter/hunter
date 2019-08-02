@@ -1,8 +1,11 @@
 <?php
 
-use Talon\Http\Response;
+namespace Dubhunter\HunterLight\Controllers\V1;
 
-class V1ApiController extends BaseController {
+use Dubhunter\HunterLight\Controllers\BaseController;
+use Dubhunter\Talon\Http\Response;
+
+class ApiController extends BaseController {
 
 	public function initialize() {
 		if ($this->request->getHeader('ORIGIN')) {

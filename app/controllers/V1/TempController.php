@@ -1,8 +1,11 @@
 <?php
 
-use Talon\Http\Response\Json as JsonResponse;
+namespace Dubhunter\HunterLight\Controllers\V1;
 
-class V1TempController extends V1ApiController {
+use Dubhunter\Talon\Http\Response\Json as JsonResponse;
+use Exception;
+
+class TempController extends ApiController {
 
 	public function post() {
 		try {

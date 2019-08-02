@@ -1,6 +1,10 @@
 <?php
 
-use Talon\Http\Response;
+namespace Dubhunter\HunterLight\Controllers\Site;
+
+use Dubhunter\HunterLight\Lib\Cache;
+use Dubhunter\Talon\Http\Response;
+use Exception;
 
 class HomeController extends SiteController {
 

@@ -1,8 +1,10 @@
 <?php
 
-use Talon\Http\Response\Json as JsonResponse;
+namespace Dubhunter\HunterLight\Controllers\V1;
 
-class V1LightController extends V1ApiController {
+use Dubhunter\Talon\Http\Response\Json as JsonResponse;
+
+class LightController extends ApiController {
 
 	public function get() {
 		try {

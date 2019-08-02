@@ -1,5 +1,8 @@
 <?php
 
+namespace Dubhunter\HunterLight\Controllers\Site;
+
+use Dubhunter\HunterLight\Controllers\BaseController;
 use Phalcon\Assets\Filters\Cssmin;
 use Phalcon\Assets\Filters\Jsmin;
 

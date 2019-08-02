@@ -1,7 +1,9 @@
 <?php
 
-use Talon\Http\Response;
-use Talon\Http\Response\Twiml as TwimlResponse;
+namespace Dubhunter\HunterLight\Controllers\Site;
+
+use Dubhunter\Talon\Http\Response;
+use Dubhunter\Talon\Http\Response\Twiml as TwimlResponse;
 
 class CallController extends BaseController {
 

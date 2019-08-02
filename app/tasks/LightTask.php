@@ -1,8 +1,12 @@
 <?php
 
-use GuzzleHttp\Client;
+namespace Dubhunter\HunterLight\Tasks;
 
-class LightTask extends Phalcon\CLI\Task {
+use Dubhunter\HunterLight\Lib\Cache;
+use GuzzleHttp\Client;
+use Phalcon\CLI\Task;
+
+class LightTask extends Task {
 
 	/**
 	 * @return Cache

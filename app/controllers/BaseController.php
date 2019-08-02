@@ -1,12 +1,17 @@
 <?php
 
-use League\Uri\Schemes\Http as HttpUri;
-use Talon\Http\Response;
-use Talon\Http\Response\Json as JsonResponse;
-use Talon\Http\RestRequest;
-use Talon\Mvc\View\Template;
+namespace Dubhunter\HunterLight\Controllers;
 
-class BaseController extends Phalcon\Mvc\Controller {
+use DateTime;
+use Exception;
+use League\Uri\Schemes\Http as HttpUri;
+use Dubhunter\Talon\Http\Response;
+use Dubhunter\Talon\Http\Response\Json as JsonResponse;
+use Dubhunter\Talon\Http\RestRequest;
+use Dubhunter\Talon\Mvc\View\Template;
+use Phalcon\Mvc\Controller;
+
+class BaseController extends Controller {
 
 	const DOB = 1460170560;
 
@@ -70,6 +75,7 @@ class BaseController extends Phalcon\Mvc\Controller {
 	/**
 	 * @param string $filename
 	 * @return Template
+	 * @throws Exception
 	 */
 	protected function getTemplate($filename) {
 		$template = new Template($this->view, $filename);
