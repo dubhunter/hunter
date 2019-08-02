@@ -1,10 +1,11 @@
 <?php
 
-use Dubhunter\HunterLight\Controllers\BaseController;
+namespace Dubhunter\HunterLight\Controllers\V1;
+
 use Dubhunter\Talon\Http\Response;
 use Dubhunter\Talon\Http\Response\Twiml as TwimlResponse;
 
-class MessageController extends BaseController {
+class MessageController extends ApiController {
 
 	public function post() {
 		try {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Dubhunter\HunterLight\Controllers\Site;
+namespace Dubhunter\HunterLight\Controllers\V1;
 
 use Dubhunter\Talon\Http\Response;
 use Dubhunter\Talon\Http\Response\Twiml as TwimlResponse;
 
-class CallController extends BaseController {
+class CallController extends ApiController {
 
 	public function post() {
 		if (!$this->validTwilioRequest()) {
