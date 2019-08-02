@@ -3,64 +3,13 @@
 namespace Dubhunter\HunterLight\Controllers;
 
 use DateTime;
-use Exception;
-use League\Uri\Schemes\Http as HttpUri;
-use Dubhunter\Talon\Http\Response;
-use Dubhunter\Talon\Http\Response\Json as JsonResponse;
-use Dubhunter\Talon\Http\RestRequest;
+use Dubhunter\Talon\Mvc\RestController;
 use Dubhunter\Talon\Mvc\View\Template;
-use Phalcon\Mvc\Controller;
+use Exception;
 
-class BaseController extends Controller {
+class BaseController extends RestController {
 
 	const DOB = 1460170560;
-
-	public function options() {
-		return $this->request->isAjax() ? JsonResponse::methodNotAllowed() : Response::methodNotAllowed();
-	}
-
-	public function head() {
-		return $this->request->isAjax() ? JsonResponse::methodNotAllowed() : Response::methodNotAllowed();
-	}
-
-	public function get() {
-		return $this->request->isAjax() ? JsonResponse::methodNotAllowed() : Response::methodNotAllowed();
-	}
-
-	public function post() {
-		return $this->request->isAjax() ? JsonResponse::methodNotAllowed() : Response::methodNotAllowed();
-	}
-
-	public function put() {
-		return $this->request->isAjax() ? JsonResponse::methodNotAllowed() : Response::methodNotAllowed();
-	}
-
-	public function delete() {
-		return $this->request->isAjax() ? JsonResponse::methodNotAllowed() : Response::methodNotAllowed();
-	}
-
-	/**
-	 * @param bool $includePath
-	 * @return string
-	 */
-	protected function getUrl($includePath = false) {
-		$url = $this->request->getScheme() . '://' . $this->request->getHttpHost();
-		if ($includePath) {
-			/** @var RestRequest $request */
-			$request = $this->request;
-			$url .= $request->getURI();
-		}
-		return $url;
-	}
-
-	/**
-	 * @param $url
-	 * @param $params
-	 * @return string
-	 */
-	protected function buildUrl($url, $params) {
-		return HttpUri::createFromString($url)->withQuery(http_build_query($params))->__toString();
-	}
 
 	/**
 	 * @return array
@@ -78,7 +27,7 @@ class BaseController extends Controller {
 	 * @throws Exception
 	 */
 	protected function getTemplate($filename) {
-		$template = new Template($this->view, $filename);
+		$template = parent::getTemplate($filename);
 		$template->set('app', $this->getAppGlobal());
 		return $template;
 	}
